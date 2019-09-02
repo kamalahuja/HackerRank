@@ -20,17 +20,20 @@ worldCityJson.forEach(element => {
         let possibleOptions = cityNameLetterDict[opponentsCity.charAt(opponentsCity.length - 1)];
         //console.log(opponentsCity.charAt(opponentsCity.length - 1));
         let myWinningWord = "";
-
-        for (let index = 0; index < possibleOptions.length; index++) {
-          //  console.log(possibleOptions[index].Name);
-            usedWords.push(possibleOptions[index].Name);
-           let isWinningWord = depthFirstSearch(possibleOptions[index].Name);
-           if(isWinningWord) {
-               return possibleOptions[index].Name;
-           }
-            usedWords.pop();
+        if(possibleOptions) {
+            for (let index = 0; index < possibleOptions.length; index++) {
+                //  console.log(possibleOptions[index].Name);
+                  usedWords.push(possibleOptions[index].Name);
+                 let isWinningWord = depthFirstSearch(possibleOptions[index].Name);
+                 if(isWinningWord) {
+                     return possibleOptions[index].Name;
+                 }
+                  usedWords.pop();
+              }
+              
         }
         return "All Loosing options";
+        
     }
 
     function depthFirstSearch(vertexParam) {
@@ -70,4 +73,4 @@ worldCityJson.forEach(element => {
 
 
 
-console.log("answer is =>" + nextMove('det'));
+console.log("answer is =>" + nextMove('cap'));
