@@ -7,9 +7,9 @@ var level = 0;
 
 worldCityJson.forEach(element => {
     if(cityNameLetterDict[element.name.charAt(0).toUpperCase()]) {
-        cityNameLetterDict[element.name.charAt(0).toUpperCase()].push({"Name" : element.name.toUpperCase()});    
+        cityNameLetterDict[element.name.charAt(0).toUpperCase()].push(element.name.toUpperCase());    
     } else {
-        cityNameLetterDict[element.name.charAt(0).toUpperCase()] = [{"Name" : element.name.toUpperCase()}];
+        cityNameLetterDict[element.name.charAt(0).toUpperCase()] = [element.name.toUpperCase()];
     }    
 });
 
@@ -19,14 +19,14 @@ worldCityJson.forEach(element => {
         let opponentsCity = opponentsCityParam.toUpperCase();
         let possibleOptions = cityNameLetterDict[opponentsCity.charAt(opponentsCity.length - 1)];
         //console.log(opponentsCity.charAt(opponentsCity.length - 1));
-        let myWinningWord = "";
+        
         if(possibleOptions) {
             for (let index = 0; index < possibleOptions.length; index++) {
-                //  console.log(possibleOptions[index].Name);
-                  usedWords.push(possibleOptions[index].Name);
-                 let isWinningWord = depthFirstSearch(possibleOptions[index].Name);
+                //  console.log(possibleOptions[index]);
+                  usedWords.push(possibleOptions[index]);
+                 let isWinningWord = depthFirstSearch(possibleOptions[index]);
                  if(isWinningWord) {
-                     return possibleOptions[index].Name;
+                     return possibleOptions[index];
                  }
                   usedWords.pop();
               }
@@ -42,7 +42,7 @@ worldCityJson.forEach(element => {
         let nextWordList = cityNameLetterDict[vertexParam.charAt(vertexParam.length - 1)];
         if (nextWordList) {
             for (let index = 0; index < nextWordList.length; index++) {
-                let currentWord = nextWordList[index].Name;
+                let currentWord = nextWordList[index];
                 if (!usedWords.includes(currentWord)) {
                    // console.log(currentWord);
                     //console.log("level ->" + level);
@@ -73,4 +73,4 @@ worldCityJson.forEach(element => {
 
 
 
-console.log("answer is =>" + nextMove('cap'));
+console.log("answer is =>" + nextMove('cah'));
